@@ -5,6 +5,7 @@ import java.util.List;
 public class Shop {
 private int	id;
 private Users user;
+private Dingdan dingdan;
 private String	date;
 private int shopstatus;
 public int getId() {
@@ -31,6 +32,13 @@ public int getShopstatus() {
 }
 public void setShopstatus(int shopstatus) {
 	this.shopstatus = shopstatus;
+}
+
+public Dingdan getDingdan() {
+	return dingdan;
+}
+public void setDingdan(Dingdan dingdan) {
+	this.dingdan = dingdan;
 }
 public Shop(Users user,  String date, int shopstatus) {
 	super();

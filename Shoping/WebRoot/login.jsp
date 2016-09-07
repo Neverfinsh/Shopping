@@ -24,7 +24,28 @@
 
 <link rel="stylesheet" href="assets/css/ace.min.css" />
 <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+<script type="text/javascript" src="js/jquery-1.8.2.min.js">
+</script>
+<script type="text/javascript">
+$(function(){
+$("#check").click(function(){
+    $.ajax({
+        type:"GET",
+        url:"CheckUser", 
+        data:"username="+$("#cname").attr("value"),
+        dataType:"html",
+        success:function(data){
+        if(data=="true"){
+        $("#info").html("可以注册");
+        }else{
+        $("#info").html("不可以注册");   
+        }
+        }
+    });
+});
+});
 
+</script>
 
 
 
@@ -128,7 +149,7 @@
 										</h4>
 
 										<div class="space-6"></div>
-										<p>这里会显示你的密码,如果你输入正确的话</p>
+										<p>请输入邮箱,如果你输入正确的话,帮帮你找出密码</p>
 
 										<form action="FindPwdServlet" method="post" id="findpwd">
 											<fieldset>
@@ -173,7 +194,7 @@
 										<p>请选择您要注册的身份:</p>
 
 										<form name="regesiterform" action="AddUsersServlet"
-											method="post">
+											method="post" id="register">
 											<fieldset>
 												<label class="block clearfix">
 
@@ -192,7 +213,7 @@
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														type="text" class="form-control" placeholder="用户名"
-														name="username" /> <i class="icon-user"></i>
+														name="username" id="cname" /> <i class="icon-user"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
@@ -205,10 +226,11 @@
 														name="password1" /> <i class="icon-retweet"></i>
 												</span>
 												</label> <label class="block"> 
-												<button type="button" class="width-30 pull-left btn btn-sm"
-												  onclick="check()">
+												<button id="check"  type="button" class="width-30 pull-left btn btn-sm"
+												  >
 														<i class="icon-refresh"></i>是否重复
 													</button>
+												<span id="info"></span>
 												</label>
 
 												<div class="space-24"></div>

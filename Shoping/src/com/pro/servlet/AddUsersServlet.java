@@ -58,6 +58,13 @@ public class AddUsersServlet extends HttpServlet {
 				resp.sendRedirect(req.getContextPath() + "/login.jsp");
 			} else {
 				System.out.println("注册失败");
+			
+				req.setAttribute("ok", "注册失败，请不要重复名字");
+				
+				resp.sendRedirect(req.getContextPath() + "/login.jsp");
+			
+			
+			
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -32,9 +32,10 @@ public class FindPwdServlet extends HttpServlet {
 			user = userbiz.findPwd(email);
 			
 			if(user!=null){
-				
+				req.setAttribute("password", user.getPassword());
 				req.getRequestDispatcher("login.jsp").forward(req, resp);
 			}else{
+				req.setAttribute("password", "没有该用户");
 				req.getRequestDispatcher("login.jsp").forward(req, resp);
 			}
 			

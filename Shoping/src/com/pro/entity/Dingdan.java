@@ -6,6 +6,20 @@ private String 	goodsname;
 private double	goodsprice;
 private int	count;
 private Shop shop;
+private  int goodsid;
+private  int dingdanstatus;
+public int getDingdanstatus() {
+	return dingdanstatus;
+}
+public void setDingdanstatus(int dingdanstatus) {
+	this.dingdanstatus = dingdanstatus;
+}
+public int getGoodsid() {
+	return goodsid;
+}
+public void setGoodsid(int goodsid) {
+	this.goodsid = goodsid;
+}
 public int getId() {
 	return id;
 }

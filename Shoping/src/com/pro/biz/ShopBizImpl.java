@@ -17,4 +17,10 @@ public class ShopBizImpl implements ShopBiz {
 		return shopDao.addShop(shop);
 	}
 
+	@Override
+	public int findShopID(Shop shop) throws Exception {
+		// TODO Auto-generated method stub
+		return shopDao.findShopID(shop);
+	}
+
 }

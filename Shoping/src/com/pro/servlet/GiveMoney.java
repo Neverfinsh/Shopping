@@ -28,7 +28,7 @@ import com.pro.entity.Users;
 import com.pro.utils.DBUtils;
 
 public class GiveMoney extends HttpServlet {
-
+   //生成订单
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -48,24 +48,28 @@ public class GiveMoney extends HttpServlet {
 		//上面是从购物车中将对象传过来
 		GoodsBiz goodsBiz=new GoodsBizImpl();
         ShopBiz shopBiz=new ShopBizImpl();
-        DingdanBiz dingdanBiz=new DingdanBizImpl();
 	    Shop shop=new Shop(user, new Date().toLocaleString(), 0);
-	    shop.setId(8);
 	    shopBiz.addShop(shop);
 	    System.out.println(shop.getId());
+	    List<Dingdan> lDingdan=new ArrayList<Dingdan>();
 		for (Goods goods1 : list) {
 			if(goodsBiz.downByGoods(goods1.getId(), goods1.getCount())>0){
 			    Dingdan  dingdan=new Dingdan();
 			    dingdan.setCount(goods1.getCount());
 			    dingdan.setGoodsname(goods1.getGoodsname());
 			    dingdan.setGoodsprice(goods1.getPrice());
+			    dingdan.setGoodsid(goods1.getId());
 			    dingdan.setShop(shop);
-			    dingdanBiz.addDingdan(dingdan);
+			    lDingdan.add(dingdan);
 			}else{
 			System.out.println("修改失败");
 			}
 	       }
-		   resp.sendRedirect("index.jsp");
+	       // throw new Exception(); 
+           req.setAttribute("shop", shop);
+           req.setAttribute("list", lDingdan);
+     		 req.getRequestDispatcher("ScDingdan").forward(req, resp);
+	//	   resp.sendRedirect("index.jsp");
 		
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -2,9 +2,12 @@ package com.pro.biz;
 
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.pro.dao.UserDao;
 import com.pro.dao.UserDaoImpl;
 import com.pro.entity.Users;
+import com.pro.utils.DBUtils;
 
 public class UserBizImpl implements UserBiz {
 	private UserDao userdao = new UserDaoImpl();

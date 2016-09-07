@@ -42,12 +42,11 @@ public class UserDaoImpl implements UserDao {
 	public int addUser(Users user) throws Exception {
 		// 获得数据库连接
 		Connection con = DBUtils.getConnection();
-		String password=DigestUtils.md5Hex(user.getPassword());
 		// 定义sql语句
 		String insertsql = "insert into user(username,password,email,rowid)values('"
 				+ user.getUsername()
 				+ "','"
-				+ password
+				+ user.getPassword()
 				+ "','"
 				+ user.getEmail() + "','" + user.getRowid() + "')";
 
@@ -179,8 +178,10 @@ public class UserDaoImpl implements UserDao {
 			users2.setPassword(rs.getString("password"));
 			users2.setUsername(rs.getString("username"));
 			users2.setEmail(rs.getString("email"));
+			return users2;
+
 		}
-		return users2;
+     return null;
 	}
 	//修改用户
 		@Override
@@ -209,7 +210,6 @@ public class UserDaoImpl implements UserDao {
 		public Users findByIdUser(int id) {
 			String sql = "select * from user  where id=? and status=0";
 			Users user = null;
-			
 			try {
 				Connection con=DBUtils.getConnection();
 				PreparedStatement pstm = con.prepareStatement(

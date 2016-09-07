@@ -1,4 +1,4 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
@@ -6,6 +6,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,8 +72,7 @@
 
 							<li class="divider"></li>
 
-							<li><a href="UserLoginOut" onclick="return confirm('确认退出么')">
-									<i class="icon-off"></i> 退出
+							<li><a href="UserLoginOut"> <i class="icon-off"></i> 退出
 							</a></li>
 						</ul></li>
 				</ul>
@@ -160,7 +160,7 @@
 										</a>
 									</c:when>
 									<c:when test="${sessionScope.user.rowid  eq 3 }">
-										<a href="ShowDingdan"> <i> <class="icon-double-angle-right"></i>
+										<a href="deleteGoods.jsp"> <i> <class="icon-double-angle-right"></i>
 											${functionlist.get(1) }
 										</a>
 									</c:when>
@@ -175,7 +175,7 @@
 									</c:when>
 									<c:when test="${sessionScope.user.rowid  eq 3 }">
 										<a href="findAllGoods"> <i> <class="icon-double-angle-right"></i>
-																					${functionlist.get(2) }
+											${functionlist.get(2) }
 
 										</a>
 									</c:when>
@@ -190,7 +190,7 @@
 									</c:when>
 									<c:when test="${sessionScope.user.rowid  eq 3 }">
 										<a href="LocateGoods.jsp"> <i> <class="icon-double-angle-right"></i>
-										${functionlist.get(3) }
+											${functionlist.get(3) }
 										</a>
 									</c:when>
 								</c:choose></li>
@@ -234,7 +234,7 @@
 					</script>
 
 					<ul class="breadcrumb">
-						<li><i class="icon-home home-icon"></i> <a href="login.jsp">首页</a></li>
+						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
 						<li class="active">管理</li>
 					</ul>
 					<!-- .breadcrumb -->
@@ -264,6 +264,40 @@
 								</strong>
 							</div>
 
+
+							<br> <br>
+							
+								<table class="table table-striped  table-hover" align="left"
+									style="font-size:17px;  ">
+									<tr class="container-flow"
+										style="font-size:16px;font-family:微软雅黑; text-align:center">
+										<td class="col-lg-2">购买者</td>
+										<td class="col-lg-2">商品名称</td>
+										<td class="col-lg-2">商品价格</td>
+										<td class="col-lg-2">商品数量</td>
+										<td class="col-lg-2">是否发货</td>
+										<td class="col-lg-2"></td>
+									</tr>
+									<c:forEach items="${list }" var="dd" >
+									<tr class="container-flow"
+										style="font-size:16px;font-family:微软雅黑; text-align:center">
+									<td class="col-lg-2">${dd.id }</td>
+										<td class="col-lg-2">${dd.goodsname }</td>
+										<td class="col-lg-2">${dd.goodsprice }</td>
+										<td class="col-lg-2">${dd.count }</td>
+										<td class="col-lg-2">
+										<c:if test="${dd.dingdanstatus eq 0}">未发货</c:if>
+										<c:if test="${dd.dingdanstatus eq 1}">已发货</c:if>
+										</td>
+										<td class="col-lg-2"><button class="btn btn-sm btn-yellow" >确定发货</button></td>
+									</tr>
+									</c:forEach>
+								
+
+								</table>
+
+
+							
 
 
 							<div class="ace-settings-container" id="ace-settings-container">

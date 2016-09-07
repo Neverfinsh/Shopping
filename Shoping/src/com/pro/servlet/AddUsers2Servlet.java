@@ -32,7 +32,6 @@ public class AddUsers2Servlet extends HttpServlet {
 			throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		resp.setContentType("text/html;charset=utf-8");
-		
 		String name=req.getParameter("username");
 		String pwd=req.getParameter("password");
 		String email=req.getParameter("email");
