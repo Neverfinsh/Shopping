@@ -73,7 +73,7 @@
 
 							<li class="divider"></li>
 
-							<li><a href="#"> <i class="icon-off"></i> 退出
+							<li><a href="UserLoginOut"> <i class="icon-off"></i> 退出
 							</a></li>
 						</ul></li>
 				</ul>
@@ -155,7 +155,7 @@
 
 							<li><c:choose>
 									<c:when test="${sessionScope.user.rowid  eq 1 }">
-										<a href="deleteUser.jsp?rowid=1"> <i
+										<a href="ShowDingdan"> <i
 											class="icon-double-angle-right"></i> ${functionlist.get(2) }
 
 										</a>

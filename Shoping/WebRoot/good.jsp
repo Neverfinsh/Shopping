@@ -250,7 +250,7 @@
 												style="color:#999; font-family:黑体;font-size:16px">数量&nbsp;&nbsp;</span>
 											<span
 												style="padding:4px;border:#eeeeee solid 1px;color:#000000">
-													<input type="text" style="width:40px" name="count" value="0"  onblur="check(${requestScope.good.count })" id="count">
+													<input type="text" style="width:40px" name="count" value="1"  onblur="check(${requestScope.good.count })" id="count">
 											</span><span
 												style="color:#999;font-family:黑体;font-size:15px">&nbsp;件&nbsp;&nbsp;</span>
 									    <span style="color:#999;font-family:黑体;font-size:14px">库存：</span>${requestScope.good.count }<span

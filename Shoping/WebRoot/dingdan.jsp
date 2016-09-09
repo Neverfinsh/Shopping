@@ -154,7 +154,7 @@
 
 							<li><c:choose>
 									<c:when test="${sessionScope.user.rowid  eq 1 }">
-										<a href="deleteUser.jsp?rowid=1"> <i
+										<a href="ShowDingdan"> <i
 											class="icon-double-angle-right"></i> ${functionlist.get(2) }
 
 										</a>
@@ -289,7 +289,7 @@
 										<c:if test="${dd.dingdanstatus eq 0}">未发货</c:if>
 										<c:if test="${dd.dingdanstatus eq 1}">已发货</c:if>
 										</td>
-										<td class="col-lg-2"><button class="btn btn-sm btn-yellow" >确定发货</button></td>
+										<td class="col-lg-2"><button class="btn btn-sm btn-yellow"  onclick="delete()" >确定发货</button></td>
 									</tr>
 									</c:forEach>
 								

@@ -19,9 +19,6 @@
 
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
-
-
-
 <link rel="stylesheet" href="assets/css/ace.min.css" />
 <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
 <script type="text/javascript" src="js/jquery-1.8.2.min.js">
@@ -32,23 +29,52 @@ $("#check").click(function(){
     $.ajax({
         type:"GET",
         url:"CheckUser", 
-        data:"username="+$("#cname").attr("value"),
+        data:"username="+$("#registername").attr("value"),
         dataType:"html",
         success:function(data){
         if(data=="true"){
         $("#info").html("可以注册");
         }else{
         $("#info").html("不可以注册");   
+        $("#registername").attr("value","");
         }
         }
     });
 });
+
 });
-
 </script>
+<script type="text/javascript">
+function checklogin(){
+  var a=document.getElementById("loginname").value;
+  var b=document.getElementById("loginpwd").value;
+  if(a==""||b==""){
+  alert("账号密码不能为空");
+  return false;
+  }
+  return true;
+}
+function  checkregister(){
+  var a=document.getElementById("registeremail").value;
+  var b=document.getElementById("registername").value;
+  var c=document.getElementById("registerpwd").value;
+  var d=document.getElementById("registerpwd1").value;
 
-
-
+  if(a==""||b==""||c==""||d==""){
+   alert("请将信息补充完整,再执行注册操作");
+   return false;
+  }
+  return true;
+}
+function checkemail(){
+ var  a=document.getElementById("lostemail").value;
+  if(a==""){
+  alert("请输入邮箱");
+  return false;
+  }
+  return true;
+}
+</script>
 </head>
 
 <body class="login-layout">
@@ -93,12 +119,12 @@ $("#check").click(function(){
 													<div class="space-4"></div> <span
 													class="block input-icon input-icon-right"> <input
 														type="text" class="form-control" placeholder="用户名"
-														name="username" /> <i class="icon-user"></i>
+														name="username"  id="loginname"/> <i class="icon-user"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														type="password" class="form-control" placeholder="密码"
-														name="password" /> <i class="icon-lock"></i>
+														name="password" id="loginpwd" /> <i class="icon-lock"></i>
 												</span>
 												</label>
 
@@ -108,7 +134,7 @@ $("#check").click(function(){
 													<label class="inline"> <span class="lbl">${loginError}</span>
 													</label> <input type="submit"
 														class="width-35 pull-right btn btn-sm btn-primary"
-														value="登录">
+														value="登录" onclick="return checklogin()">
 
 
 												</div>
@@ -131,7 +157,7 @@ $("#check").click(function(){
 
 										<div>
 											<a href="#" onclick="show_box('signup-box'); return false;"
-												class="user-signup-link"> 注册新用户 <i
+												class="user-signup-link">注册新用户 <i
 												class="icon-arrow-right"></i>
 											</a>
 										</div>
@@ -156,15 +182,15 @@ $("#check").click(function(){
 												<label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														type="email" class="form-control" placeholder="Email"
-														name="email" /> <i class="icon-envelope"></i>${password}
+														name="email"  id="lostemail"/> <i class="icon-envelope"></i>${password}
 
 												</span>
 												</label>
 
 												<div class="clearfix">
 													<button type="submit"
-														class="width-35 pull-right btn btn-sm btn-danger">
-														<i class="icon-lightbulb"></i> 确定
+														class="width-35 pull-right btn btn-sm btn-danger" onclick="return checkemail()">
+														<i class="icon-lightbulb" ></i> 确定
 													</button>
 												</div>
 											</fieldset>
@@ -202,28 +228,27 @@ $("#check").click(function(){
 														<select style="WIDTH: 290px" height="50" name="roletype">
 															<option value="2" name="role">普通用户</option>
 															<option value="3" name="role">商户</option>
-															<option value="1" name="role">管理人员</option>
 														</select>
 													</tr>
 													<div class="space-4"></div> <span
 													class="block input-icon input-icon-right"> <input
 														type="email" class="form-control" placeholder="Email"
-														name="email" /> <i class="icon-envelope"></i>
+														name="email" id="registeremail"/> <i class="icon-envelope"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														type="text" class="form-control" placeholder="用户名"
-														name="username" id="cname" /> <i class="icon-user"></i>
+														name="username"  id="registername" /> <i class="icon-user"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														type="password" class="form-control" placeholder="密码"
-														name="password" /> <i class="icon-lock"></i>
+														name="password"  id="registerpwd"/> <i class="icon-lock"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														type="password" class="form-control" placeholder="确认密码"
-														name="password1" /> <i class="icon-retweet"></i>
+														name="password1" id="registerpwd1"/> <i class="icon-retweet"></i>
 												</span>
 												</label> <label class="block"> 
 												<button id="check"  type="button" class="width-30 pull-left btn btn-sm"
@@ -236,14 +261,13 @@ $("#check").click(function(){
 												<div class="space-24"></div>
 
 												<div class="clearfix">
-													<button type="reset" class="width-30 pull-left btn btn-sm">
+													<button type="reset" class="width-30 pull-left btn btn-sm" > 
 														<i class="icon-refresh"></i> 重置
 													</button>
 
-													<button type="submit"
-														class="width-65 pull-right btn btn-sm btn-success">
-														注册 <i class="icon-arrow-right icon-on-right"></i>
-													</button>
+													<input type="submit"
+														class="width-35 pull-right btn btn-sm btn-primary"
+														value="注册" onclick="return checkregister()">
 												</div>
 											</fieldset>
 										</form>

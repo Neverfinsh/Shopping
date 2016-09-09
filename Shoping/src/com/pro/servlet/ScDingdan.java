@@ -34,7 +34,7 @@ public class ScDingdan extends HttpServlet {
 			    dingdan.getShop().setId(id);
 			    dingdanBiz.addDingdan(dingdan);
 			}
-			resp.sendRedirect("index.jsp");
+			resp.sendRedirect("success.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
